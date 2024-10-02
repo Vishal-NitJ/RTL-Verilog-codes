@@ -1,0 +1,11 @@
+
+ // here whatever the signals reqd for dut and testbench top are present .
+
+ interface intf ();
+  logic a;
+  logic b;
+  logic c;
+  logic sum;
+  logic co;
+
+ endinterface 
