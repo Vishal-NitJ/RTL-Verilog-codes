@@ -1,0 +1,29 @@
+// this is Highest in Hieerarchy and contains children / child components like  interface and DUT 
+// clk is declared here such that we can give it to DUT ,INTERFACE 
+
+module top ; 
+      logic clk ;
+    initial begin 
+      clk = 1'b0;
+    always  #10 clk = ~ clk ;
+   end 
+      // from interface ,signals are enering into DUT --so we declared (intf.i/p) 
+    dff dut ( 
+            .clk (intf.clk) , .rst (intf.rst) ,
+            .d(intf.d) , .q(intf.q), .qbar (intf.qbar));
+
+    dff_intf intf(.clk (clk)) ; // (.interface clk (topmodule clk) )
+      initial begin 
+      uvm_config_db #(virtual dff_intf) :: set (null,"*", "vif", intf ) ;
+       end 
+
+    $dumpfile ("dump.vcd") ;
+     $dumpvars;
+      initial begin 
+      $monitor ($time ,"clk=%0d", clk) ;
+      #200 $finish ;
+      end
+      initial begin 
+       run_test ("dff_test") ;
+    end 
+endmodule 
