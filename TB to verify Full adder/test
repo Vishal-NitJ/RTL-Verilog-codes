@@ -1,0 +1,13 @@
+
+// we declare as Program block 
+
+'include "environment.sv" 
+
+program test ();
+  environment env ;
+  initial begin 
+    env = new (intf);
+    env.test_run ();
+end 
+
+endprogram 
