@@ -1,0 +1,35 @@
+// here all the lower componentws are created like gen, monh, driver, scoreboard 
+
+'include "driver.sv" 
+'include "generator.sv" 
+'include "monitor.sv" 
+'include " scoreboard.sv"
+
+
+class environment ;
+   monitor mon ;
+   scoreboard scb ;
+   driver drv ;
+   generator gen ;
+
+        mailbox gen2drv ;
+        mailbox mon2scb ;
+    virtual intf vif ;
+    function new (virtual intf vif ) ;
+     this. vif = vif ;
+     gen = new (gen2drv);
+     drv = new (vif, gen2drv );
+     mon = new (vif, mon2scb);
+     scb = new (mon2scb) ;
+     endfunction
+
+     task test_run () ;
+        fork 
+        gen.main ();
+        mon.main ();
+        scb . main ();
+        drv.main ();
+        join   
+     endtask 
+
+     endclass 
