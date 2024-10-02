@@ -1,0 +1,44 @@
+
+//Test class is a uvm component
+class dff_test extends uvm_test;  //uvm_test is the base test class
+  `uvm_component_utils(dff_test)   // registered class to uvm factory
+  
+  dff_env env;
+  dff_sequence seq;
+  
+  //standard constructor
+  function new(string name ="dff_test", uvm_component parent);
+    super.new(name, parent);
+    `uvm_info("Test Class", "constructor", UVM_MEDIUM)   // print method ."Test class" ----handle or address and "constructor"----is the o/p which is printed
+  endfunction                                      // uvm_medium is the vervosity level  
+ 
+  
+  function void build_phase(uvm_phase phase);    //build phase
+    super.build_phase(phase);
+       // create lower components
+                    env = dff_env::type_id::create("env", this);       // we can use froom uvm_factory when required 
+                    seq = dff_sequence::type_id::create("seq", this);     // new () --also create the obj and memory but we cant derive anythimg from parent class
+  
+  endfunction
+  
+  function void connect_phase(uvm_phase phase);    //connect phase
+    super.connect_phase(phase);
+    `uvm_info("Test Class", "connect phase", UVM_MEDIUM)
+  endfunction
+  
+  //end of elaboration phase
+  virtual function void end_of_elaboration();
+    `uvm_info("Test Class", "elob phase", UVM_MEDIUM)
+    print();       // this prints the entire hierarchy of components
+  endfunction
+
+  task run_phase(uvm_phase phase);
+    `uvm_info("test Class", "run_phase", UVM_MEDIUM)   // address and printed value , verbosity level 
+
+    phase.raise_objection(this); //stay in run_phase untill the Test drop the objection
+    seq.start(env.agent.seqr); 
+    phase.drop_objection(this);
+    
+  endtask 
+  
+endclass
