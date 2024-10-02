@@ -1,0 +1,19 @@
+
+// this generates stimulus or various test vectors (packet /bunch of signals ) and put on mailbox which willm be moved to driver 
+
+class generator ;
+mailbox gen2drv ;
+transaction trans;  // handle of transaction class(or packet )
+
+function new ( mailbox gen2drv ) ;
+  this.gen2drv = gen2drv;
+endfunction 
+task main();
+   repeat (10) begin 
+    trans = new();   // creating a memory (assigning default values) and making it obj
+    trans.randomize();   // randomize the values to get differnt values to check the design 
+    trans.display("Generator class ");
+   gen2drv.put (trans);  // mbx uses put method to keep all the generated test stimuli 
+
+endtask 
+endclass
