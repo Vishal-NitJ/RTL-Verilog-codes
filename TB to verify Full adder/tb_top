@@ -1,0 +1,15 @@
+
+// writing tb top which contains test, interface and DUT 
+ module top ;
+intf vif ();
+test tst (vif) ; // test is connected to dut through intf ,so we have to give intf signals as input to test
+ FA dut ( .a(a) , .b(b) , .c(c)
+          .sum(sum), .co(co)
+             ) ;
+
+initial begin 
+$dumpfile("dump.vcd") ;
+$dumpvars ;
+end 
+
+endmodule 
