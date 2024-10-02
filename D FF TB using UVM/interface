@@ -1,0 +1,12 @@
+
+
+interface dff_intf (input logic clk) ;  // clk is generating and coming from top module (testbench) 
+                                         // so clk acts as input to interface 
+    
+    logic d;
+    logic q ;
+    logic rst ; 
+    logic q ; 
+    logic qbar ;
+
+endinterface 
