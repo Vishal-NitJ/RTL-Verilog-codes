@@ -1,0 +1,22 @@
+ // agent is a component class and  contains driver ,monitor , sequencer 
+// connect sequencer and driver using TLM PORTS 
+
+class dff_agent extend uvm_driver ;
+  'uvm_component_utils (dff_agent) 
+ dff_driver drv ;
+ dff_monitor mon ;
+ dff_scb scb ;
+
+  //BUILD PHASE    --declaering virtual bcz when needed child can acess parent easily 
+virtual function void build_phase (uvm_phase phase) ;
+   super.build_phase (phase);
+ drv= dff_driver :: type_id :: create ("drv" , this ) ;
+  mon = dff_monitor :: type_id :: create ("mon", this) ;
+ scb = dff_scb :: type_id :: create ("scb" , this) ;
+endfunction 
+ 
+//CONNECT PHASE 
+ virtual function void connect_phase (uvm_phase phase );
+ super.connect_phase (phase) ;
+   drv.seq_item_port.connect (seqr.seq_item_export ) ;  // this is only imp step 
+endfunction 
