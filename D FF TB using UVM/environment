@@ -7,6 +7,18 @@
    
    function new (string name, uvm_component parent ) ;
     super.new (name ,parent );
-    'uvm_info ()
+    'uvm_info ("env class", "constructor", UVM_MEDIUM) 
    endfunction
+   // BUILD FUNC
+   function void build_phase (uvm_phase phase ) ;
+   super.build_phase ( phase ) ;
+   agnt = dff_agent ::  type_id :: create ("agnt" , this);   // agnt --handle 
+   scb = dff_scb :: type_id :: create ("scb", this );   // scb --handle of dff_scb    // important step 
+   endfunction
+
+   //connect phase 
+  virtual function void connect_phase (uvm_phase phase );
+    super.connect_phase (phsae );
+    agnt.mon.item_collected_port.connect (scb.item_collected_export) ;
+   endfunction 
  endclass 
