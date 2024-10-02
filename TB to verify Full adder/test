@@ -6,8 +6,8 @@
 program test ();
   environment env ;
   initial begin 
-    env = new (intf);
-    env.test_run ();
+    env = new (vif);  // here handle of intf class is given to env 
+    env.test_run ();  // this is the main method from wheere all the code tb runs 
 end 
 
 endprogram 
