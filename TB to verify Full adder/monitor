@@ -11,10 +11,14 @@ endfunction
     task main  ();
         repeat (10)  begin 
          transaction trans ;
-            trans =new ();
+            trans =new (); 
+          trans.a = vif.a ;       // this samples both o/p and i/p bcz these signlas are coming from DUT which process the i/p and provides the o/p
 
-
-
-
-
+            trans.b = vif.b ;
+            trans.c = vif.c ;
+              trans.sum = vif.sum ;
+              trans.co = vif.co ;
+       mon2scb.put (trans); 
+      trans.display("monitor signls ") ;
+endtask
 endclass 
