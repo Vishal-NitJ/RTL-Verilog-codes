@@ -1,0 +1,17 @@
+  // dff verilog code 
+
+   module dff (clk, rst, d ,q , qbar ) ;
+       input clk, rst,d ;
+      output reg q ;
+    output qbar;
+     assign qbar = ~ q ;
+
+        always @ (posedge clk or posedge rst )  // asynchronous reset -- not depending on clk ,whennver rising edge of reset occurs --output rests irrespective of clk edge 
+           begin 
+           if (rst) 
+              q <= 0 ;
+          else 
+              q <= d ;
+          end 
+          endmodule 
+          
