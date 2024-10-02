@@ -1,0 +1,16 @@
+
+//uvm obj class --so no phases 
+//also called transaction class or packet class bcz signals(stimuli) are generated here 
+
+class dff_seq_item extends uvm-sequence_item ;
+  rand logic rst ;
+  rand logic d ;
+     logic q ;
+     logic qbar ;
+     // standard constructo
+   function new (string name ) ;
+      super.new (name) ;
+      endfunction
+    constraint c1 {rst !=1 ; }  
+
+endclass 
