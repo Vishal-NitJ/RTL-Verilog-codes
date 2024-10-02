@@ -1,0 +1,27 @@
+
+// here the generated signals are (extracted using get method of mbx ) and  given to DUT through interface 
+ class driver ;
+  mailbox gen2drv ;
+  virtual interface intf vif ;
+
+    function new (virtual interface vif, mailbox gen2drv);  // constructor --no return type --takes default values 
+     this . vif =vif ;
+   this.gen2drv = gen2drv ;
+     endfunction
+
+       task main ();
+       repeat (10)  begin 
+         transaction trans ;
+         gen2drv.get (trans) ;
+            vif.a <= trans.a;             // sampling the inputs only bcz we are giving to DUT which gives us o/p
+            vif.b <= trans.b ;
+             vif.c <= trans.c ;
+            trans.display("Driver class signlas") ;
+         end 
+
+   endtask
+           endclass 
+       
+
+
+endclass
