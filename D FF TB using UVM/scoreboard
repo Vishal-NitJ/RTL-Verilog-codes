@@ -1,0 +1,26 @@
+
+// it is a component --has no lower comp classes .
+// should connect using analysis port (used for data distribution which is got from the monitor) --done in env class 
+// take analysis port and define them 
+class dff_scb extends uvm_scoreboard ;
+  'uvm_component_utils (dff_scb)  
+  function new (string name ,uvm_component parent ) ;
+    super.new (name, parent ) ;
+    endfunction 
+    uvm_analysis_imp #(dff_seq_item , dff_scb) ap_imp ;
+    dff_seq_item tx_q[$] ;
+    
+  //build phase 
+    virtual function void build_phase (uvm_phase phase ) ;
+   super.build_phase (phase);
+    ap_imp = new (" ap-imp", this) ;  // instantiate analysis port , bcz its a class obj
+    
+    endfunction 
+    // define action to be taken when packet is received via declared analysis port 
+    // write task --receives packet from monitor and pushes into queue
+  virtual function void write (dff_seq_item tx ) ; // tx is handle of transaction or packet class
+      tx_q.push_back (tx) ;
+      endfunction
+
+      endclass
+             
