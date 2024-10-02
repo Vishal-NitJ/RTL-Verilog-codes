@@ -1,0 +1,23 @@
+// here expected and actual o/ps are compared called golden refernce model
+
+class scoreboard ;
+   mailbox mon2scb ;
+
+   function new (mailbox mon2scb) ;
+ this. mon2scb = mon2scb;
+   endfunction
+
+   task main ();
+     transaction trans ;
+     trans = new ();
+     repeat (10) begin 
+     mon2scb.get (trans);
+     trans.display("scoreboard signals") ;
+     // refence module or golden DUT 
+      if ( (trans.a ^ trans.b ^ trans.c == trans.sum ) && ((trans.a & trans.b) | (trans.b & trans.c) | (trans.a.& trans.c) == trans.co ) ;
+        $ display( " ====pass===");
+        else $display("===fail ====");
+     end
+     endtask 
+     endclass
+     
