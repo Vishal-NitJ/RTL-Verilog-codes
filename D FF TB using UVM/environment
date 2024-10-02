@@ -1,0 +1,12 @@
+
+// thsi is component class and contains agent and scoreboard as children (lower component) --in build class 
+ // connect monitor  which is present in Agent and scb using Analysis port 
+
+ class dff_env extends uvm_component ;
+   'uvm_component_utils (dff_env)        // registers claass= to uvm enviroment class 
+   
+   function new (string name, uvm_component parent ) ;
+    super.new (name ,parent );
+    'uvm_info ()
+   endfunction
+ endclass 
