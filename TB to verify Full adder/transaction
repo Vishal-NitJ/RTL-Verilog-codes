@@ -1,0 +1,12 @@
+
+// to declare all signals present in interface or dut 
+class transaction ;
+  rand bit a;    // keeping i/p signals as "rand"  to produce various vlaues 
+  rand bit b ;
+  rand bit c ;
+       bit sum ;  
+       bit co ;
+   function void display(string name) ;
+    $display (" a=%0b , b=%0b , c=%0b, sum=%0b, co=%0b ",a , b, c, sum , co);
+  endfunction 
+endclass 
