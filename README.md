@@ -1,1 +1,1 @@
-# Single-Dual-port-RAM-
+# RTL verilog codes
