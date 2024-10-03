@@ -1,0 +1,39 @@
+// it is a component and drives the signals or packets or transaxtions to DUT throuh interface , it has no lower components 
+// but we have to declare which tx is driven at particulr instant .
+// we have to get the interface from config_db 
+
+class dff-driver extends uvm_driver #(transaction) 
+  'uvm_component_utils(dff_driver) 
+virual  dff_intf intff ;
+  dff_seq_item tx ;
+
+  virtual function new (string name , uvm_component parent) ;
+    super.new (name, parent ) ;
+endfunction 
+
+  //BUILD PHASE 
+    virtual function void build_phase (uvm_phase phase );
+        super.build_phase (phase) ;
+   if (!uvm_config_db #(virtual dff_intf) :: get (this, " ","vif", intff )) ; // intff --is the handle of class interface
+                                            //  here get takes 4 args 
+    'uvm_error ("address=DRIVER","failed to get intf signals from driver-- print at console", );
+      endfunction 
+// driver has 3 imp methods like get_next_item (), drive () ,item_done () 
+      task run_phase (uvm_phase phase) ;
+  transaction tx =new ();  // creating obj tx for transaction class with memory and default values 
+      forever begin                    // here if we use repeat() b;lock only certain no of repetions occurs ---it wont give 100% code coverage 
+  seq_item_port.get_next_item ();
+  drive (tx); 
+   seq_item_port.item_done ();
+  end
+    endtask 
+
+    task drive (dff_seq_item tx );      // samples the i/p only and not o/ps (bcz we are sending the i/ps to DUT from here )
+        @posedge (intff.clk)     // hanfle of interface declared is intff.
+       intff.rst <= tx.rst ;
+        intff.d <= tx.d ;
+      endtask 
+     endclass 
+
+
+  
