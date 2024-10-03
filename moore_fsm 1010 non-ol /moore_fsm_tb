@@ -2,9 +2,9 @@
 // or browse Examples
 module moore_fsm_tb;
 reg din,clk,rst;
-wire ;
+wire q ;
   // dut
-  moore_fsm_non-overlap (din, rst, clk, q);
+  moore_fsm_non_overlap dut  (din, rst, clk, q);  //by order
   
 initial
 begin
@@ -21,8 +21,7 @@ rst=0;clk=0;din=0;
 #10 din=1;
 
 end
-always
-#5 clk=~clk;
+always #5 clk=~clk;
 initial
 #100 $finish ;
 endmodule
