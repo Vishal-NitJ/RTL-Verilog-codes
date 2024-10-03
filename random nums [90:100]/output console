@@ -1,0 +1,26 @@
+KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 4750 kB (elbread=459 elab2=4148 kernel=142 sdf=0)
+# KERNEL: ASDB file was created in location /home/runner/dataset.asdb
+# KERNEL: random nos btw 90 and 100 are: 9.900000
+# KERNEL: random nos btw 90 and 100 are: 9.600000
+# KERNEL: random nos btw 90 and 100 are: 9.400000
+# KERNEL: random nos btw 90 and 100 are: 9.000000
+# KERNEL: random nos btw 90 and 100 are: 9.400000
+# KERNEL: random nos btw 90 and 100 are: 9.900000
+# KERNEL: random nos btw 90 and 100 are: 9.400000
+# KERNEL: random nos btw 90 and 100 are: 9.100000
+# KERNEL: random nos btw 90 and 100 are: 9.400000
+# KERNEL: random nos btw 90 and 100 are: 9.600000
+# KERNEL: random nos btw 90 and 100 are: 9.400000
+# KERNEL: random nos btw 90 and 100 are: 9.400000
+# KERNEL: random nos btw 90 and 100 are: 10.000000
+# KERNEL: random nos btw 90 and 100 are: 9.300000
+# KERNEL: random nos btw 90 and 100 are: 9.500000
+# KERNEL: random nos btw 90 and 100 are: 10.000000
+# KERNEL: random nos btw 90 and 100 are: 9.800000
+# KERNEL: random nos btw 90 and 100 are: 9.800000
+# KERNEL: random nos btw 90 and 100 are: 9.600000
+# KERNEL: random nos btw 90 and 100 are: 9.300000
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# VSIM: Simulation has finished.
+Done
