@@ -1,0 +1,36 @@
+//component class --collects thre processed data from DUT through interface ,, uses analysis port for data disribution to all other components 
+// uses virual interface --so config_db to use the data
+
+
+class dff_monitor extends uvm_monitor ;
+      'uvm_component_utis (dff_monitor) 
+    virtual dff_intf intff ;
+    uvm_analysis_port #(dff_seq_item) pkt_export;
+    dff_seq_item tx ;
+
+
+    //std constructor 
+  function new (sring name , uvm_component parent );
+    super.new (name, parent ) ;
+    endfunction 
+   //BUILD FUNC
+  virtual function void build_phase (uvm_phase phase ) ;
+    super.build_phase (phase) ;
+      pkt_export = new ("pkt_export" , this) ; // create an instance of analysis port 
+    if (!uvm_config_db #(virtual dff_intf) :: get (this ,"*", "vif", intff) ) 
+        uvm_fatal ("address=monitor", "prints=errror in geting interface signals"); 
+    endfunction 
+    //code the run phase 
+    virtual task run_phase (uvm_phase phase) ;
+    tx = dff_seq_item ::type_id :: create ("tx") ;
+      wait(!intf.rst) ;        //  
+       @ (posedge intf.rst)  // sampling both i/ps and o/ps  --triggering of clk for chacnnge of i/p to occur
+      tx.rst = intff. rst ;       //intff --handle of interface and tx --is handdle of tx class
+      tx.d = intff.d ;
+        tx.q = intff.q ;
+        tx.qbar = intff.qbar ;
+   endtask 
+  endclass 
+        
+
+     
