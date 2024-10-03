@@ -1,0 +1,27 @@
+
+
+//to generate random nums bteween 90 and 100
+
+module hi ;
+ class hello ;
+   rand int val ;
+   real re_num;
+   
+   constraint c1 {val inside { [90:100]}  ;}
+   
+   function void post_randomize();
+   
+   re_num = val/10.0;
+     $display("random nos btw 90 and 100 are: %2f", re_num);
+   
+   endfunction
+   endclass 
+ 
+ initial begin 
+   hello  h=new ();
+  
+   repeat(20) 
+    h.randomize();
+	
+ end
+ endmodule
