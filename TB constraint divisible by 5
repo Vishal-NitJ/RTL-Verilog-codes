@@ -3,9 +3,9 @@
 
 
       class abc ;
-        rand bit [5:0] a ; // static array 
+        rand bit [5:0] a ; // static array or packed array 
         
-        constraint c2 {a%5==0 ;} 
+        constraint c2 {a%5==0 ;}    						// we cant use " % " opearator for dynamic arrays 
         
        endclass 
 			module top ; 
@@ -14,10 +14,19 @@
                 h2 = new () ; // creating obj of class 
                 repeat (20) begin 
                   h2.randomize (); 
-                  $display ("value of a =%0d", h2.a) ;
+                  $display ("value of a =%0d", h2.a) ;			 // here we can take "a= %p " also . this is printing each element but i need full row 
                 end 
               end 
                 endmodule 
+////////////////////////////////////////////////////////////////////
+
+  class abc ;
+  rand bit a[] ;  // dynamic arrray 
+   constraint c3 {foreach(a[i]) 
+                  a[i] %5 ==0 ;} 
+
+//code same here
+
 
 
                 
