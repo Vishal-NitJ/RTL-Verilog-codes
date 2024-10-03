@@ -1,6 +1,6 @@
 // Code your design here
 
-module moore_fsm_non-overlap (clk,rst,din,q) ;
+module moore_fsm_non_overlap (clk,rst,din,q) ;
   
   input clk,rst,din ;
   output reg q ;
@@ -16,7 +16,7 @@ module moore_fsm_non-overlap (clk,rst,din,q) ;
     begin 
       if(rst) 
         c_st <= s0;   //ideal or reset state 
-        n_st <= s0;
+        //n_st <= s0;
       else 
         c_st <= n_st ; //move to next state 
     end
