@@ -1,0 +1,29 @@
+ // TB constriant to generate pattern -0 1 0 2 0 3 0 4 0 5
+// at even index value =0 adn odd index == (i+1)/2
+
+
+   class abc ;
+  
+     rand int arr[] ; // dynamic array
+  
+     constraint c1 {arr.size==10 ; }
+     constriant c2 {foreach (arr[i]) 
+            if (i%2==0) arr[i]==0 ;
+                    else arr[i]==(i+1)/2 ; }
+                
+                   
+     endclass
+  module top ; 
+    abc h ;
+    initial begin 
+      h = new ();
+      h.randomize(); 
+      $display ("arr[%0d]=%p", h.arr[i]) ;
+//       $write (" required pattern is");
+//       foreach (h.x[i])
+//         $write ("%d ",h.arr[i]);
+//         $display("/n/n");
+
+      
+    end
+      endmodule 
