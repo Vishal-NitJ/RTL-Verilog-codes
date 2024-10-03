@@ -1,0 +1,23 @@
+
+
+
+
+      class abc ;
+        rand bit [5:0] a ; // static array 
+        
+        constraint c2 {a%5==0 ;} 
+        
+       endclass 
+			module top ; 
+              abc h2 ;
+              initial begin 
+                h2 = new () ; // creating obj of class 
+                repeat (20) begin 
+                  h2.randomize (); 
+                  $display ("value of a =%0d", h2.a) ;
+                end 
+              end 
+                endmodule 
+
+
+                
