@@ -1,0 +1,25 @@
+// object --so no phases like (build,connect, run) . This wraps or collection of stimuli from seq-items 
+// 4 main methods to do : wait_for _grant() -- randomize () --send_req (), --wait_for _item_done 
+
+
+  class dff_sequence extends uvm_sequence ;
+      'uvm_objec_utils (dff_sequence) 
+
+      dff_seq_item tx ; 
+       // std constructo
+       function new (string name ) ;
+       super.new (name) ;
+       endfunction 
+
+        // no phases 
+        task body () ;
+      repeat (10) begin 
+      tx = dff_seq_item :: type_id :: create ("tx") ;
+
+        wait_for_grant ();
+        tx.randomize ();
+        send_request (tx) ;
+        wait_for_item_done () ;
+        
+        endtask 
+        endclass
