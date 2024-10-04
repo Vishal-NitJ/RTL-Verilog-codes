@@ -1,0 +1,43 @@
+
+
+ class packet;
+	   bit [15:0] data;
+	   bit [15:0] addr;
+	   //methods--polymorphism=inheritance + virtaul function  
+	     virtual task print(); //here base class will be overridden by child class bcz of virtual keyword 
+		$display("printing from base class");
+           $display("[parent]addr=%0d",addr);
+           $display("[parent]data=%0d",data);
+		endtask
+		endclass
+
+	class child_packet extends packet;
+		task print() ;
+		$display("printing child class");
+          $display("[child]addr=%0d",addr);
+          $display("[child]data=%0d",data);
+//           $display("[child]addr=%h",addr);
+//           $display("[child]data=%h",data);
+		endtask
+		endclass
+
+	module top ;
+	  packet pkt ;
+      child_packet e_pkt =new();   		//obj for child class 
+		initial begin 
+		pkt=e_pkt; 		//assigning child class handle to parent  class 
+		pkt.addr=63;
+		pkt.data=127;
+		pkt.print();
+		end
+      
+	endmodule
+
+/////////////////////////////OUTPUT /////////////
+# KERNEL: printing child class
+# KERNEL: [child]addr=63
+# KERNEL: [child]data=127
+# KERNEL: [child]addr=003f
+# KERNEL: [child]data=007f
+# KERNEL: Simulation has finished
+
