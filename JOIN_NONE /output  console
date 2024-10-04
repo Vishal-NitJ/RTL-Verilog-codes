@@ -1,0 +1,11 @@
+# KERNEL: ASDB file was created in location /home/runner/dataset.asdb
+# KERNEL: fork-join_none completed at time = 0
+# KERNEL: Process A started at time = 0
+# KERNEL: Process B started at time = 0
+# KERNEL: Process C started at time = 0
+# KERNEL: Process A completed at time = 10
+# KERNEL: Process B completed at time = 15
+# KERNEL: Process C completed at time = 20
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# VSIM: Simulation has finished.
+Done
