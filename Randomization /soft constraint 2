@@ -1,0 +1,22 @@
+// in the same class itself we can take two constraints which override each other
+class ABC ;
+  rand bit [15:0] data ;
+  
+  constraint c1 {soft data >= 20; data <= 50;  }
+ // constraint c2 {data <= 30 ;}
+  
+endclass
+
+module top ;
+  ABC hello ;
+  
+  initial begin 
+    repeat (5) begin 
+      hello.randomize ();
+      $display("before soft data=%0d", hello.data) ;
+      hello.randomize () with {data == 30 ;};
+     $display (" data=%0d", hello.data );
+    end 
+  end
+  
+endmodule 
