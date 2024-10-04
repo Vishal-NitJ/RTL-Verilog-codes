@@ -1,0 +1,42 @@
+//creating somple class , having members and methods and accessing them in another module 
+
+ class hello ;
+   rand bit [31:0] addr;			 //class members
+   rand  bit [63:0] data;
+         bit write;
+        string pkt_name ;
+   function show();        //method work to be done by class members.
+           $display("---------____-----====__-===");
+          $display("addr =%0p ",addr);
+       $display("data=%0d",data);
+       $display("write=%0d",write );
+          $display("pkt_name=%0s",pkt_name);
+        endfunction
+          endclass
+          
+              module test;
+			    hello b;			//crreating handle for class
+                initial begin 
+                  b=new();  		//creating object 
+                  b.addr=11988980;     
+                  b.data=12342;
+                  b.write=10897;
+                  b.pkt_name = "memory"  ;
+                  b.show();      //calling the function
+                  
+                  
+                end 
+                
+              endmodule 
+
+
+//////////////////////////////////////////////////////output ////////////
+# KERNEL: ASDB file was created in location /home/runner/dataset.asdb
+# KERNEL: ---------____-----====__-===
+# KERNEL: addr =11988980 
+# KERNEL: data=12342
+# KERNEL: write=1
+# KERNEL: pkt_name=memory
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# VSIM: Simulation has finished.
+Done
