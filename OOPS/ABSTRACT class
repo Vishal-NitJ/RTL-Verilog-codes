@@ -1,0 +1,33 @@
+ 
+//ABSTRACT CLASS 
+virtual class base;                       // virtual class cannot  be instatnt directly 
+		  rand  bit [31:0] data;                  // so we have to take derived class for vituall class implememtation 
+      rand logic [6:0] id;
+	   function void show();
+         $display("[base] class data=%0d and id=%0d", data,id);
+	   endfunction 
+
+        endclass
+		class child extends base;                  //child can take all the properies of parent class 
+//           function void show ();
+//            $display ("[child]class data =%0d, id= %0d", data,id);
+//     endfunction         
+		endclass 
+		
+		module hello ;
+          
+		initial begin 
+		child sub =new();                  //here no initialization or memory instantiation for base class 
+    repeat (4) begin 
+		sub.data=$random;
+		sub.id=$random ;
+		sub.show ();
+          end 
+        end
+		endmodule 
+
+//////////////////////////////////////output /////////
+# KERNEL: [base] class data=303379748 and id=1
+# KERNEL: [base] class data=2223298057 and id=99
+# KERNEL: [base] class data=112818957 and id=13
+# KERNEL: [base] class data=2999092325 and id=18
