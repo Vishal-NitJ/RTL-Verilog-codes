@@ -1,0 +1,40 @@
+ class hello ;
+   rand bit[7:0] data ;
+   constraint c { soft data>10; data<60; data%5==0;}
+    
+	 endclass
+
+      module top  ;
+         hello s;
+      initial begin 
+          s=new();
+          repeat(5) begin 
+            s.randomize();
+            $display("before inline constraint ---data=%0d", s.data);
+      
+            s.randomize() with {data inside {[9:1]};};    //here we get randmztn error bcz both constraints are conflicting each other one is btw 1 to 10 and other is grater tahn 10 .
+	          // so by using soft keyword we override or ignore 1 consraint 
+           
+            $display ("after inline constraint data =%0d",s.data);
+       
+         end
+      end
+  
+     endmodule 
+     ////////////////////////////////////////////////////////////////ouput///////////////////
+     # KERNEL: before inline constraint ---data=30
+# RCKERNEL: Warning: RC_1006 testbench.sv(15): Randomization failed. The static part of condition '1'b0;' of randomize call cannot be satisfied.
+# KERNEL: after inline constraint data =30
+# KERNEL: before inline constraint ---data=20
+# RCKERNEL: Warning: RC_1006 testbench.sv(15): Randomization failed. The static part of condition '1'b0;' of randomize call cannot be satisfied.
+# KERNEL: after inline constraint data =20
+# KERNEL: before inline constraint ---data=50
+# RCKERNEL: Warning: RC_1006 testbench.sv(15): Randomization failed. The static part of condition '1'b0;' of randomize call cannot be satisfied.
+# KERNEL: after inline constraint data =50
+# KERNEL: before inline constraint ---data=50
+# RCKERNEL: Warning: RC_1006 testbench.sv(15): Randomization failed. The static part of condition '1'b0;' of randomize call cannot be satisfied.
+# KERNEL: after inline constraint data =50
+# KERNEL: before inline constraint ---data=15
+# RCKERNEL: Warning: RC_1006 testbench.sv(15): Randomization failed. The static part of condition '1'b0;' of randomize call cannot be satisfied.
+# KERNEL: after inline constraint data =15
+# KERNEL: Simulation has finished.
