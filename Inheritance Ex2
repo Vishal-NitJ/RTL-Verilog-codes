@@ -1,0 +1,66 @@
+
+//code your testbench for polymorphism
+
+class parent; // parent class 
+  int data = 678;
+  int id = 232;  
+  virtual function void display();
+    $display("Parent: Value of data = %0d, id = %0d", data, id);
+  endfunction 
+endclass
+
+class child_A extends parent; //child class 1   
+  function void display();
+    $display("Child_A: Value of data = %0d, id = %0d", data, id);
+  endfunction 
+endclass
+
+class child_B extends parent; //child class 2
+  function void display();
+    $display("Child_B: Value of data = %0d, id = %0d", data, id);
+  endfunction  
+endclass
+
+module tb;
+  
+  parent pA, pB; 		//pA,PB are handles of parent class
+  child_A q1; 		//q1,q2 is handle of childA and childB
+  child_B q2; 			
+  
+  initial
+    begin
+      
+      pA = new();			//creating objects --means allocating memory 
+     pB = new();
+     q1 = new();
+     q2 = new(); 
+      
+      pA.display(); 		//display parent class 
+     pB.display();
+      
+     q1.data = 200;			//giving values to child class
+     q1.id   = 2; 
+      
+     q2.data = 300;
+    q2.id   = 3; 
+      
+     pA = q1;			//assining child class handles to parent class
+     pB = q2; 
+      
+     pA.display();     //display parent class after assigning child class to parent class
+     pB.display();  
+      
+     pA.data = 100;
+     pA.id   = 1;   
+      
+     pA.display();    
+  end
+endmodule
+
+////////////////////output///////////
+# KERNEL: Parent: Value of data = 678, id = 232
+# KERNEL: Parent: Value of data = 678, id = 232
+# KERNEL: Child_A: Value of data = 200, id = 2
+# KERNEL: Child_B: Value of data = 300, id = 3
+# KERNEL: Child_A: Value of data = 100, id = 1
+# KERNEL: Simulation has finished.
