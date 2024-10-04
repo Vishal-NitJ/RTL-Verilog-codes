@@ -1,4 +1,5 @@
 // Code your testbench here
+// fork join -- this offers parallel or concurrent execution of statemdnts --means all will start simultaneously at same time (t=0) ns 
 // in this after executing of all the process or tbhreads present in fork then control comes out of and prints statemens present in Join 
 // aafter 30  ns only control come sou and prints join untill then it waits inside fork 
 
