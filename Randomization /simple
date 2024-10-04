@@ -1,0 +1,44 @@
+
+
+// Code your testbench here
+// or browse Examples
+class hello ;
+  rand logic [10:0] data ;
+  randc logic [5:0] var1 ; 
+endclass 
+
+module top ;
+  initial begin 
+    hello h = new();
+    
+    repeat (20) 
+   // for (int i=0 ; i<10 ;i++) 
+      begin 
+      h.randomize ();
+      $display ("data=%d, var1=%d", h.data, h.var1); 
+      //  $display ("data=%0x, var1=%0x", h.data, h.var1);
+    end   
+  end
+endmodule 
+ //////////////////////////////output //////////////////
+ # KERNEL: data= 144, var1=59
+# KERNEL: data= 771, var1=21
+# KERNEL: data= 685, var1=51
+# KERNEL: data= 580, var1= 7
+# KERNEL: data= 660, var1= 3
+# KERNEL: data= 823, var1=63
+# KERNEL: data= 373, var1=17
+# KERNEL: data=1344, var1=19
+# KERNEL: data= 486, var1=60
+# KERNEL: data=1605, var1=31
+# KERNEL: data=  74, var1=13
+# KERNEL: data= 121, var1=44
+# KERNEL: data=1898, var1=43
+# KERNEL: data= 593, var1=42
+# KERNEL: data=1669, var1=27
+# KERNEL: data= 838, var1= 6
+# KERNEL: data= 603, var1=58
+# KERNEL: data=1103, var1=12
+# KERNEL: data= 505, var1=16
+# KERNEL: data= 323, var1= 5
+# KERNEL: Simulation has finished
