@@ -1,0 +1,26 @@
+
+
+
+class packet ;
+  rand bit [3:0] queue [$] ;	//declaring a queue with rand
+  constraint c1 {queue.size()==10 ;}
+endclass
+
+module top ;
+  packet pkt ;
+  initial begin 
+    pkt = new ();
+    repeat (4) begin 
+      pkt . randomize ();
+      $display ("queue = %p", pkt.queue);
+    end 
+  end 
+  
+endmodule 
+
+////////////////output ///
+# KERNEL: queue = '{3, 0, 3, 9, 12, 13, 0, 0, 13, 7}
+# KERNEL: queue = '{4, 5, 8, 15, 13, 0, 7, 8, 7, 15}
+# KERNEL: queue = '{1, 9, 9, 2, 14, 0, 2, 9, 12, 10}
+# KERNEL: queue = '{4, 11, 2, 1, 0, 9, 6, 5, 3, 2}
+# KERNEL: Simulation has finished. 
