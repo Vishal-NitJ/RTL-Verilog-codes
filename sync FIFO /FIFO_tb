@@ -1,0 +1,56 @@
+// Code your testbench here
+// or browse Examples
+module sync_fifo_tb ;
+	
+     parameter data_width =8 ;
+	 parameter addr_width = 3 ;
+	 parameter fifo_depth =8 ;
+	 reg clk,rst, wr_en, rd_en ;
+	 reg [(data_width-1): 0] data_in ;
+	 wire empty ,full, rd_vd ;
+	 wire [(data_width-1) : 0] data_out ; 
+	 
+  sync_fifo dut ( .clk(clk), .rst (rst) , .rd_en(rd_en) , .wr_en(wr_en),.data_in(data_in) , .data_out(data_out), .empty (empty) , .full(full), .rd_vd (rd_vd), .data_width(data_width),.addr_width(addr_width),.fifo_depth(fifo_depth) );
+		always #5 clk=~clk ;
+      initial begin 
+		 clk=0; rst=0; wr_en =0 ; rd_en=0 ; data_in =0 ;
+		end 
+    initial begin 
+      $dumpfile ("dump.vars");
+      $dumpvars ;
+      
+    end
+		
+		always @ (posedge clk) 
+		begin 
+		  #100 rst =1 ;
+		  wr_en = 1;
+		  data_in = 'd65 ;
+		  #20 ;
+		  wr_en = 1;
+		  data_in = 'd120 ;
+		  #20 ;
+		  wr_en = 1;
+		  data_in = 'd895 ;
+		  #40 ; 
+		  wr_en = 1;
+		  data_in = 'd566 ;
+		  #30 ; 
+		  wr_en = 1;
+		  data_in = 'd125 ;
+		  #20 ;
+		  wr_en=0 ;
+		  #20 rd_en=1 ;
+		  #80 rd_en =1 ;
+		  #20 ;
+		  wr_en = 1;
+		  data_in = 'd245 ;
+		  #20 ;
+		  wr_en = 1;
+		  data_in = 'd199 ;
+		  #120 ;
+		  rd_en=0 ;
+          #200 $finish ;
+		  end 
+		  endmodule 
+		  
