@@ -27,3 +27,10 @@ endclass
       end
       
     endmodule 
+
+/////////////////////////////////////OUTPUT////////////////////////
+# KERNEL: data =36
+# KERNEL: data =1
+# KERNEL: data =9
+# KERNEL: data =35
+# KERNEL: data =13
