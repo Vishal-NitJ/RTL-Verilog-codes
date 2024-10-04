@@ -1,0 +1,24 @@
+// Code your testbench here
+// or browse Examples
+
+
+   module abc ;
+     initial begin
+       $display ("main thread :fork join starts here at [%0t]",$time) ;   // if we dont use [%t] -- then we dont get time and also must use $time    
+    fork 
+      //thread 1 
+      #30 $display ("thread 1 finshed [%0t]",$time ) ;
+      //process2 
+      begin 
+        #5 $display("thread2 starts [%0t]", $time );
+        #20 $display( "thread2 finished at [%0t]", $time );
+        
+      end
+      //thread 3 
+      #10  $display("thread 3 finished [%0t]",$time);
+     
+    join
+       $display ("main thread finshed [%0t]", $time );
+    
+    end 
+   endmodule 
