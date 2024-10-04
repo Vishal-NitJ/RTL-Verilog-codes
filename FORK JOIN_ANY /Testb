@@ -1,0 +1,33 @@
+
+// Code your testbench here
+// or browse Examples
+// here even if one thread or process gets executed , control comes out of fork and executes join_any statement 
+//remainig threads executes in bsackground .
+// in fork-join_any, all processes start simultaneously and join_any will wait for any one process to be completed.
+
+
+   module abc ;
+     initial begin
+       $display ("main thread :fork join starts here at [%0t]",$time) ;
+   
+    fork 
+      //thread 1 
+      #30 $display ("thread 1 finshed [%0t]",$time ) ;
+      //process2 
+      begin 
+        #5 $display("thread2 starts [%0t]", $time );
+        #20 $display( "thread2 finished at [%0t]", $time );
+        
+      end
+      //thread 3 
+      #10  $display("thread 3 finished [%0t]",$time);
+     
+    join_any 
+       $display ("main thread finshed [%0t]", $time );
+       
+    
+    end 
+   endmodule 
+
+   //in output 
+   //after 10ns control xomes out of fork and executes join_any (main_thread) and remainig threads execute in backgrnd .
