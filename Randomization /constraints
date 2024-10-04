@@ -1,0 +1,39 @@
+
+
+// Code your testbench here
+// or browse Examples
+class hello ;
+  rand logic [20:0] data ;
+  randc logic [15:0] var1 ; 
+  
+  constraint c1 {data inside {[255:500]} ;}
+  constraint c2 {var1>20 ;
+                  var1 < 300 ;}
+endclass 
+
+module top ;
+  initial begin 
+    hello h = new();
+    
+    repeat (10) 
+   // for (int i=0 ; i<10 ;i++) 
+      begin 
+      h.randomize ();
+        $display ("data=%0d, var1=%0d", h.data, h.var1); 
+    
+    end   
+  end
+endmodule 
+ ///////////////////////////////////output ///////
+
+# KERNEL: data=313, var1=169
+# KERNEL: data=391, var1=232
+# KERNEL: data=454, var1=206
+# KERNEL: data=279, var1=244
+# KERNEL: data=429, var1=46
+# KERNEL: data=341, var1=286
+# KERNEL: data=405, var1=24
+# KERNEL: data=466, var1=178
+# KERNEL: data=300, var1=53
+# KERNEL: data=409, var1=38
+# KERNEL: Simulation has finished.
