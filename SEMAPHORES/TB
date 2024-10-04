@@ -1,0 +1,33 @@
+//USED for conrol access over shared resource ex: memory access for peripherals bcz some wants to write data into mem and someother wants to read data from mem 
+//if both occur at same time ie before writing data into --one wants to reads data from mem -- this throw error --a this time semaphores are very helpful
+//bcz they provide keys to those who wants to write , after completion of process or task they will put or return key back , now given to read peipherals .
+
+
+module semaphore_example();
+  semaphore sem = new(1);                             //new () --func shows how many keys are needed 
+  
+  task write_mem();
+    sem.get();                                        //get ()-- this will get the keys from bucket --blocking --it waits until it gets key
+    $display("Before writing into memory in %0t", $time);
+    #5ns  // Assume 5ns is required to write into mem
+    $display("Write completed into memory in %0t",$time);
+    sem.put();                                         //put() --operation used to reverse back key after ur task is completed --others can use resource 
+  endtask
+  
+  task read_mem();
+    sem.get();
+    $display("Before reading from memory in %0t", $time);
+    #4ns  // Assume 4ns is required to read from mem
+    $display("Read completed from memory in %0t",$time);
+    sem.put();
+  endtask
+
+  initial begin
+    fork
+      write_mem();
+      read_mem();
+    join
+  end
+endmodule
+
+//one can try this code wihout using semaphores --throws error, --bcz before writing into --read wants to access.
