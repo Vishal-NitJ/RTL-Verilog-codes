@@ -1,0 +1,37 @@
+// bidirectional means value of one varriable depends on other . vars depend on each oother 
+	 // definr a constraint such that x equals twice , y is odd  and z equals square of y 
+	 // in this it can choose x or y or z --1st (no order of preference) we are not forcing constraint solver to take particular variable 1st.
+    
+    class hello ;
+      
+      
+      rand bit [5:0] x,y,z ;
+      constraint c1 {x=2*y ;}
+      constraint c2 {y%2==1 ;}
+      constraint c3{z=y**2 ;}
+      endclass
+    
+    module top;
+      
+      hello h;
+      initial begin 
+        h=new();
+        repeat (10) begin 
+          h.randomize();
+          $display(" x=%d, y=%d , z=%d", h.x, h.y,  h.z);
+        end
+      end
+    endmodule 
+
+
+//////////////////////////////output /////////////
+# KERNEL:  x= 6, y= 3 , z= 9
+# KERNEL:  x= 2, y= 1 , z= 1
+# KERNEL:  x= 6, y= 3 , z= 9
+# KERNEL:  x=50, y=25 , z=49
+# KERNEL:  x=58, y=29 , z= 9
+# KERNEL:  x=26, y=13 , z=41
+# KERNEL:  x=34, y=17 , z=33
+# KERNEL:  x=34, y=17 , z=33
+# KERNEL:  x=26, y=13 , z=41
+# KERNEL:  x=46, y=23 , z=17
