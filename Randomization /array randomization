@@ -1,0 +1,26 @@
+
+
+class hello;
+  rand logic [7:0] d_arr [];                   //dynamic array 
+  constraint c1 {d_arr.size ()==10 ;}
+ // constraint c2 {d_arr inside {[190:300]} ;}
+endclass
+
+module tb ;
+  hello h ;
+  initial begin 
+    h= new ();
+    repeat (5) begin 
+      h.randomize ();
+      $display("elements of d_arr are =%0p", h.d_arr);
+      
+    end 
+  end
+endmodule 
+///////////////////////////////output
+# KERNEL: elements of d_arr are =70 165 35 212 223 173 187 88 135 216
+# KERNEL: elements of d_arr are =10 186 139 125 141 36 249 153 81 203
+# KERNEL: elements of d_arr are =151 171 17 115 23 222 131 56 136 109
+# KERNEL: elements of d_arr are =238 138 14 66 0 120 213 225 221 50
+# KERNEL: elements of d_arr are =66 132 123 200 107 134 44 55 201 4
+# KERNEL: Simulation has finished
