@@ -1,0 +1,29 @@
+
+
+//pure virtula function or method --here both child and parent mehods must be of same signature and return type  
+// using derived class handle we can allocate or access base class members and also child class must be non-virtual 
+//if child class is also virtual then no use also it methods must be non-virtual 
+
+virtual class base ;                  // ABSTRACT CLASS
+  rand logic [5:0] data ;
+  pure virtual function void print (); 
+endclass 
+
+    class child extends base ;				//here child can access base properties and methods 
+      function void print ();            //SIGNATURE MUST BE SAME AS PARENT METHOD 
+        $display ("data =%0d", data);
+      endfunction
+      
+    endclass 
+   
+    module top ;
+      child ch ;
+      initial begin 
+        ch=new ();                      //SINCE IT IS ABSTRACT CLASS we are not instantiating base class
+        repeat (5) begin
+        ch.data=$random ;
+        ch.print ();
+        end    
+      end
+      
+    endmodule 
