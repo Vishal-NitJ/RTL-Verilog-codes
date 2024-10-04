@@ -1,0 +1,32 @@
+// here some constraints ate already writtten (fixed) bu user need to addd some more to his use--- here inline are useful 
+
+//but both (fixed) or already declared and inline (during randomization) should not conflict each other ie one cannot overdrive other constriants else throw error--randomization fails
+
+class packet ;
+  rand logic [7:0] val1,val2 ;
+  
+  constraint c1 {val1>120 ;val1 <300 ;}
+  
+  constraint c2 {val2 inside {[30:100]} ;}
+  
+endclass
+ 
+module tb ;
+   packet pkt
+  initial begin 
+    pkt = new ();
+    
+    repeat (8) begin 
+      pkt.randomize ();
+      $display ("before inline const val1=%0d, val2=%0d", pkt.val1,pkt.val2);
+      
+      pkt.randomize with { val1 inside {[255:300]} ; };
+      pkt.randomize with { val2 > 70 ;  val2 < 90 ; };
+      $display ("AFTER inline const val1=%0d , val2=%0d", pkt.val1,pkt.val2);
+      
+    end
+    
+  end
+endmodule 
+
+
