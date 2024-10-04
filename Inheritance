@@ -1,0 +1,41 @@
+// Code your testbench here
+class parent_class ;
+  bit [31:0] addr=2345;
+  logic [15:0] pkt ;
+  function void display ();
+    $display ("[Parent] addr=%0d", addr);
+     $display ("[parent] pkt=%0d",pkt);
+	endfunction
+endclass
+
+class child_class extends parent_class;
+  bit [31:0] data=6745;
+ function void display();
+      super.display();                             // Call base class display method
+   $display ("[Child] addr=%0d", addr);            //eventhough we didnt declared addr , pkt in child but it can access
+   $display ("[Child] data=%0d", data);
+   $display("[child] pkt=%0d", pkt) ;
+   
+  endfunction
+endclass
+
+module tb;
+  initial begin
+ parent_class p;
+    child_class c;
+      p = new();
+      c = new();
+       p.pkt=12;
+       c.pkt= 233 ;
+    c.display();     			// control starts from here ,moves to child method but control jumps to parent method after seeing super keyword .
+   
+    end
+endmodule 
+
+/////////////////////////////////output console ///////////
+# KERNEL: [Parent] addr=2345
+# KERNEL: [parent] pkt=233
+# KERNEL: [Child] addr=2345
+# KERNEL: [Child] data=6745
+# KERNEL: [child] pkt=233
+# KERNEL: Simulation has finished.
