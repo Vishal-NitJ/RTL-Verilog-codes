@@ -1,0 +1,45 @@
+class hello;
+  rand logic [7:0] d_arr [];
+  constraint c1 {d_arr.size ()==6 ;}
+// constraint c2 {d_arr inside {[190:300]} ;}
+  function void display ();
+   foreach (d_arr[i]) 
+      $display ("d-arr[%0d]=%p", i ,d_arr[i]);
+    
+  endfunction
+endclass
+
+module tb ;
+  hello h ;
+  initial begin 
+    h= new ();
+    repeat (3) begin 
+      h.randomize ();
+     //  $display("elements of d_arr are =%0p", h.d_arr);
+      h.display() ;
+    end 
+  end 
+  
+  
+endmodule 
+
+
+      ///////////////////////////////////output ////////////////
+ # KERNEL: d-arr[0]=70
+# KERNEL: d-arr[1]=165
+# KERNEL: d-arr[2]=35
+# KERNEL: d-arr[3]=212
+# KERNEL: d-arr[4]=223
+# KERNEL: d-arr[5]=173
+# KERNEL: d-arr[0]=187
+# KERNEL: d-arr[1]=88
+# KERNEL: d-arr[2]=135
+# KERNEL: d-arr[3]=216
+# KERNEL: d-arr[4]=10
+# KERNEL: d-arr[5]=186
+# KERNEL: d-arr[0]=139
+# KERNEL: d-arr[1]=125
+# KERNEL: d-arr[2]=141
+# KERNEL: d-arr[3]=36
+# KERNEL: d-arr[4]=249
+# KERNEL: d-arr[5]=153
