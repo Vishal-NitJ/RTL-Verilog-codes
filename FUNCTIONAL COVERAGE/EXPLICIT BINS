@@ -1,0 +1,64 @@
+//in explicit bins --we declare each and every bin or value of variable  particularly
+// [$:9] --means start from 1st and [8:$]--gives all values till end 
+//sclar bins --for a range of values we are considering one bin only
+
+
+
+module top ;
+  logic [3:0] mode ;
+  logic [4:0] data ;
+  
+  covergroup cg ;
+     option.per_instance =1 ;
+    L1 : coverpoint mode { bins b0 = {[2:0]};              //here only 3 bins for 8 values 
+                          bins b1 = {4};
+                          bins b2 = {5,6,7 };
+                         }
+    L2 : coverpoint data { bins feature1 = {[$:5]};  // here only 3 bins for 16 values 
+                          bins color = {6,7,8};       //scalar bin i.e single bin for entire range 
+                          bins confi = {[9:$]};  //scalar bins (same above )
+                                                                }
+                                            //bins hi[] = {0, {2:8}}; 		//vector bins
+                                            //bins kill []= {[12 : 45]};   ----fixed vector array of bins
+      endgroup 
+     cg cg_h ;    			//handle of covergrp
+  initial begin: b1
+     cg_h = new () ;  		//instantiating covergrp
+    repeat (50) begin: b2 
+      {mode, data} = $random ;
+      cg_h.sample () ;
+        
+    end : b2 
+     end :b1
+    initial begin : b3
+      #500 ;
+      $stop () ;
+    end :b3 
+
+  endmodule 
+
+  //////////////////////////////////////OUTPUT ////////////////
+      COVERGROUP COVERAGE
+#     =============================================================
+#     |        Covergroup         |   Hits   |  Goal /  | Status  |
+#     |                           |          | At Least |         |
+#     =============================================================
+#     | TYPE /top/cg              | 100.000% | 100.000% | Covered |
+#     =============================================================
+#     | INSTANCE <UNNAMED1>       | 100.000% | 100.000% | Covered |
+#     |---------------------------|----------|----------|---------|
+#     | COVERPOINT <UNNAMED1>::L1 | 100.000% | 100.000% | Covered |
+#     |---------------------------|----------|----------|---------|
+#     | bin b0                    |        9 |        1 | Covered |
+#     | bin b1                    |        4 |        1 | Covered |
+#     | bin b2                    |       11 |        1 | Covered |
+#     |---------------------------|----------|----------|---------|
+#     | COVERPOINT <UNNAMED1>::L2 | 100.000% | 100.000% | Covered |
+#     |---------------------------|----------|----------|---------|
+#     | bin feature1              |       14 |        1 | Covered |
+#     | bin color                 |        2 |        1 | Covered |
+#     | bin confi                 |       34 |        1 | Covered |
+#     =============================================================
+# 
+exit
+# VSIM: Simulation has finished.
