@@ -1,0 +1,71 @@
+//in explicit bins --we declare each and every bin or value of variable  particularly
+// [$:9] --means start from 1st and [8:$]--gives all values till end 
+//sclar bins --for a range of values we are considering one bin only
+// in vector for each value --a bin is used ---we know bin means coverage or value is hit --so every value is hit if we use vector notification
+
+
+module top ;
+  logic [3:0] mode ;
+  logic [4:0] data ;
+  
+  covergroup cg ;
+     option.per_instance =1 ;
+    L1 : coverpoint mode { bins b0 = {[2:0]};              //here only 3 bins for 8 values 
+                          bins b1 = {4};
+                          bins b2 = {5,6,7 };
+                         }
+    L2 : coverpoint data { bins hi = {0, [4:8]};                 //vector bins
+                        bins code = {1,2,3};
+                          bins kill []= {[12 : 23]};            // ----fixed vector array of bins
+                        bins rtl  = {9,10,11} ;
+                          bins eat []={ [27:31]};		//here for repeating 50 times  L2 = 70% coverage bcz we r not definig some values
+    }
+  endgroup 
+     cg cg_h ;    			//handle of covergrp
+  initial begin: b1
+     cg_h = new () ;  		//instantiating covergrp
+    repeat (100) begin: b2 								//if u repeat less no of times ---less covrg
+      {mode, data} = $random ;
+      cg_h.sample () ;
+        
+    end : b2 
+     end :b1
+    initial begin : b3
+      #500 ;
+      $stop () ;
+    end :b3 
+  endmodule 
+  /////////////////////////////////////output /////////////////////////////////////
+   |---------------------------|----------|----------|-----------|
+#     | COVERPOINT <UNNAMED1>::L1 | 100.000% | 100.000% | Covered   |
+#     |---------------------------|----------|----------|-----------|
+#     | bin b0                    |       15 |        1 | Covered   |
+#     | bin b1                    |        6 |        1 | Covered   |
+#     | bin b2                    |       18 |        1 | Covered   |
+#     |---------------------------|----------|----------|-----------|
+#     | COVERPOINT <UNNAMED1>::L2 |  95.000% | 100.000% | Uncovered |
+#     |---------------------------|----------|----------|-----------|
+#     | bin hi                    |       14 |        1 | Covered   |
+#     | bin code                  |        9 |        1 | Covered   |
+#     | bin kill[12]              |        3 |        1 | Covered   |
+#     | bin kill[13]              |        7 |        1 | Covered   |
+#     | bin kill[14]              |        3 |        1 | Covered   |
+#     | bin kill[15]              |        4 |        1 | Covered   |
+#     | bin kill[16]              |        1 |        1 | Covered   |
+#     | bin kill[17]              |        3 |        1 | Covered   |
+#     | bin kill[18]              |        5 |        1 | Covered   |
+#     | bin kill[19]              |        3 |        1 | Covered   |
+#     | bin kill[20]              |        0 |        1 | Zero      |
+#     | bin kill[21]              |        2 |        1 | Covered   |
+#     | bin kill[22]              |        4 |        1 | Covered   |
+#     | bin kill[23]              |        4 |        1 | Covered   |
+#     | bin rtl                   |       14 |        1 | Covered   |
+#     | bin eat[27]               |        2 |        1 | Covered   |
+#     | bin eat[28]               |        4 |        1 | Covered   |
+#     | bin eat[29]               |        5 |        1 | Covered   |
+#     | bin eat[30]               |        2 |        1 | Covered   |
+#     | bin eat[31]               |        3 |        1 | Covered   |
+#     ===============================================================
+# 
+exit
+# VSIM: Simulation has finished.
