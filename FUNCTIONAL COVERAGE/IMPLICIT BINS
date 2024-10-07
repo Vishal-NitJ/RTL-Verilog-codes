@@ -1,0 +1,65 @@
+
+//TO MEASURE FUNCTIONAL CORRECTNESS OF DESIGN CONSIDERING EVERY FEATURE , LEAVING NONE 
+//BY USING CONSTRAINT RANDOMIZED VERIFCATION ---WE CAN CHECK MANY POSSIBLE TEST CASES 
+//BUT HERE WE CAN SEE WHETHER PARTICULAR VALUE is HIT(COVERED) OR NOT .
+
+ module tb ;
+  
+   bit [3:0] a ;	              	//take 16 values or bins --CHECKS EACH VALUE ---- check a o/p
+   logic [2:0] b;  	             	//considers 8 bins -- CHECKS ALL 8 VALES WHETHER COVERED OR NOT ---check at o/p
+  covergroup cg ;
+    option.per_instance =1 ;  	      //for detailed analysis of bins 
+    label1 : coverpoint a ;				      //implicit bins
+    label2 : coverpoint b ;
+   
+  endgroup
+
+  initial begin : b1
+    cg cg_h= new ();			            //INSTANTIATING COVERGRP 
+    repeat (100) begin : b2	        	//IF WE REPEAT LESS TIMES --THEN WE WONT GET 100% COVERAGE
+      {a,b} = $random ;			
+      cg_h.sample () ;
+      
+    end :b2  
+  end :b1
+   initial begin : b3
+     #200 ;
+     $stop ();
+   end : b3 
+ endmodule 
+     
+    /////////////////////////////////////////////output ///////////////////////////////
+     | COVERPOINT <UNNAMED1>::label1 | 100.000% | 100.000% | Covered |
+#     |-------------------------------|----------|----------|---------|
+#     | bin auto[0]                   |        6 |        1 | Covered |
+#     | bin auto[1]                   |       15 |        1 | Covered |
+#     | bin auto[2]                   |        7 |        1 | Covered |
+#     | bin auto[3]                   |        5 |        1 | Covered |
+#     | bin auto[4]                   |        3 |        1 | Covered |
+#     | bin auto[5]                   |        6 |        1 | Covered |
+#     | bin auto[6]                   |        2 |        1 | Covered |
+#     | bin auto[7]                   |        8 |        1 | Covered |
+#     | bin auto[8]                   |        6 |        1 | Covered |
+#     | bin auto[9]                   |        7 |        1 | Covered |
+#     | bin auto[10]                  |        6 |        1 | Covered |
+#     | bin auto[11]                  |        5 |        1 | Covered |
+#     | bin auto[12]                  |        6 |        1 | Covered |
+#     | bin auto[13]                  |        5 |        1 | Covered |
+#     | bin auto[14]                  |        7 |        1 | Covered |
+#     | bin auto[15]                  |        6 |        1 | Covered |
+#     |-------------------------------|----------|----------|---------|
+#     | COVERPOINT <UNNAMED1>::label2 | 100.000% | 100.000% | Covered |
+#     |-------------------------------|----------|----------|---------|
+#     | bin auto[0]                   |        9 |        1 | Covered |
+#     | bin auto[1]                   |       13 |        1 | Covered |
+#     | bin auto[2]                   |       16 |        1 | Covered |
+#     | bin auto[3]                   |       11 |        1 | Covered |
+#     | bin auto[4]                   |        8 |        1 | Covered |
+#     | bin auto[5]                   |       21 |        1 | Covered |
+#     | bin auto[6]                   |       11 |        1 | Covered |
+#     | bin auto[7]                   |       11 |        1 | Covered |
+#     =================================================================
+# 
+exit
+# VSIM: Simulation has finished.
+    
