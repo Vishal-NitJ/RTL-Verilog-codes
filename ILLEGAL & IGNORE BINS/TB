@@ -1,0 +1,37 @@
+//////////ignore and illegal bins ////////////
+// mAIN DIFFERNCE BTW THEM :
+//ILLEGAL BINS --SHOWS THE O/P WHCIH ARE REMOVED BUT WHEREAS IGNORE WONT SHOW THE REMOVED ITEMS AT CONSOLE 
+
+module top ;
+  logic [5:0] addr ;
+  logic [4:0] data; 
+  covergroup cg ;
+    option.per_instance = 1 ;
+    label1 : coverpoint addr { 
+      ignore_bins ig = {[10:0]} ;
+      bins honda []= {[20:28]} ;
+      bins benz = {[50:60]} ;	
+    						}
+    label2 : coverpoint data {illegal_bins ill = {[20:31]};
+                              bins bike ={[0:9]} ;     
+                              bins car[] ={10,11,12};
+  }
+    
+  endgroup 
+  cg cg_h ;
+  initial begin :b1 
+    cg_h = new ();
+    repeat (100) begin :b2 
+      {addr,data}= $random ;
+      cg_h.sample ();
+      
+    end: b2    
+  end :b1
+  initial begin 
+    #300 ; 
+    $stop ();
+    
+  end 
+  
+  
+endmodule 
