@@ -1,0 +1,46 @@
+| INSTANCE <UNNAMED1>           | 100.000% | 100.000% | Covered  |
+#     |-------------------------------|----------|----------|----------|
+#     | COVERPOINT <UNNAMED1>::label1 | 100.000% | 100.000% | Covered  |
+#     |-------------------------------|----------|----------|----------|
+#     | bin honda[20]                 |        2 |        1 | Covered  |
+#     | bin honda[21]                 |        2 |        1 | Covered  |
+#     | bin honda[22]                 |        3 |        1 | Covered  |
+#     | bin honda[23]                 |        1 |        1 | Covered  |
+#     | bin honda[24]                 |        4 |        1 | Covered  |
+#     | bin honda[25]                 |        1 |        1 | Covered  |
+#     | bin honda[26]                 |        2 |        1 | Covered  |
+#     | bin honda[27]                 |        1 |        1 | Covered  |
+#     | bin honda[28]                 |        1 |        1 | Covered  |
+#     | bin benz                      |       22 |        1 | Covered  |
+#     | ignore bin ig                 |       14 |    -     | Occurred |
+#     |-------------------------------|----------|----------|----------|
+#     | COVERPOINT <UNNAMED1>::label2 | 100.000% | 100.000% | Covered  |
+#     |-------------------------------|----------|----------|----------|
+#     | bin bike                      |       27 |        1 | Covered  |
+#     | bin car[10]                   |        7 |        1 | Covered  |
+#     | bin car[11]                   |        3 |        1 | Covered  |
+#     | bin car[12]                   |        3 |        1 | Covered  |
+#     | illegal bin ill               |       34 |    -     | Occurred |
+#     ==================================================================
+# 
+exit
+# VSIM: Simulation has finished.
+//////////////////////////////////here lies the differnce btw them 
+Illegal bin 'ill' was hit with value '22' at iteration #57 of covergroup sampling. It will have no impact on the coverage statistics. HDL instance: "/top". Covergroup type: "cg", covergroup instance: "<UNNAMED1>", coverpoint: "label2".
+# ACDB: Error: ACDB_0012 testbench.sv (14): Illegal bin 'ill' was hit with value '28' at iteration #60 of covergroup sampling. It will have no impact on the coverage statistics. HDL instance: "/top". Covergroup type: "cg", covergroup instance: "<UNNAMED1>", coverpoint: "label2".
+# ACDB: Error: ACDB_0012 testbench.sv (14): Illegal bin 'ill' was hit with value '27' at iteration #66 of covergroup sampling. It will have no impact on the coverage statistics. HDL instance: "/top". Covergroup type: "cg", covergroup instance: "<UNNAMED1>", coverpoint: "label2".
+# ACDB: Error: ACDB_0012 testbench.sv (14): Illegal bin 'ill' was hit with value '26' at iteration #67 of covergroup sampling. It will have no impact on the coverage statistics. HDL instance: "/top". Covergroup type: "cg", covergroup instance: "<UNNAMED1>", coverpoint: "label2".
+# ACDB: Error: ACDB_0012 testbench.sv (14): Illegal bin 'ill' was hit with value '30' at iteration #68 of covergroup sampling. It will have no impact on the coverage statistics. HDL instance: "/top". Covergroup type: "cg", covergroup instance: "<UNNAMED1>", coverpoint: "label2".
+# ACDB: Error: ACDB_0012 testbench.sv (14): Illegal bin 'ill' was hit with value '21' at iteration #69 of covergroup sampling. It will have no impact on the coverage statistics. HDL instance: "/top". Covergroup type: "cg", covergroup instance: "<UNNAMED1>", coverpoint: "label2".
+# ACDB: Error: ACDB_0012 testbench.sv (14): Illegal bin 'ill' was hit with value '25' at iteration #71 of covergroup sampling. It will have no impact on the coverage statistics. HDL instance: "/top". Covergroup type: "cg", covergroup instance: "<UNNAMED1>", coverpoint: "label2".
+# ACDB: Error: ACDB_0012 testbench.sv (14): Illegal bin 'ill' was hit with value '31' at iteration #74 of covergroup sampling. It will have no impact on the coverage statistics. HDL instance: "/top". Covergroup type: "cg", covergroup instance: "<UNNAMED1>", coverpoint: "label2".
+# ACDB: Error: ACDB_0012 testbench.sv (14): Illegal bin 'ill' was hit with value '24' at iteration #76 of covergroup sampling. It will have no impact on the coverage statistics. HDL instance: "/top". Covergroup type: "cg", covergroup instance: "<UNNAMED1>", coverpoint: "label2".
+# ACDB: Error: ACDB_0012 testbench.sv (14): Illegal bin 'ill' was hit with value '23' at iteration #77 of covergroup sampling. It will have no impact on the coverage statistics. HDL instance: "/top". Covergroup type: "cg", covergroup instance: "<UNNAMED1>", coverpoint: "label2".
+# ACDB: Error: ACDB_0012 testbench.sv (14): Illegal bin 'ill' was hit with value '31' at iteration #78 of covergroup sampling. It will have no impact on the coverage statistics. HDL instance: "/top". Covergroup type: "cg", covergroup instance: "<UNNAMED1>", coverpoint: "label2".
+# ACDB: Error: ACDB_0012 testbench.sv (14): Illegal bin 'ill' was hit with value '28' at iteration #79 of covergroup sampling. It will have no impact on the coverage statistics. HDL instance: "/top". Covergroup type: "cg", covergroup instance: "<UNNAMED1>", coverpoint: "label2".
+# ACDB: Error: ACDB_0012 testbench.sv (14): Illegal bin 'ill' was hit with value '27' at iteration #80 of covergroup sampling. It will have no impact on the coverage statistics. HDL instance: "/top". Covergroup type: "cg", covergroup instance: "<UNNAMED1>", coverpoint: "label2".
+# ACDB: Error: ACDB_0012 testbench.sv (14): Illegal bin 'ill' was hit with value '23' at iteration #84 of covergroup sampling. It will have no impact on the coverage statistics. HDL instance: "/top". Covergroup type: "cg", covergroup instance: "<UNNAMED1>", coverpoint: "label2".
+# ACDB: Error: ACDB_0012 testbench.sv (14): Illegal bin 'ill' was hit with value '22' at iteration #86 of covergroup sampling. It will have no impact on the coverage statistics. HDL instance: "/top". Covergroup type: "cg", covergroup instance: "<UNNAMED1>", coverpoint: "label2".
+# ACDB: Error: ACDB_0012 testbench.sv (14): Illegal bin 'ill' was hit with value '23' at iteration #90 of covergroup sampling. It will have no impact on the coverage statistics. HDL instance: "/top". Covergroup type: "cg", covergroup instance: "<UNNAMED1>", coverpoint: "label2".
+# ACDB: Error: ACDB_0012 testbench.sv (14): Illegal bin 'ill' was hit with value '29' at iteration #91 of covergroup sampling. It will have no impact on the coverage statistics. HDL instance: "/top". Covergroup type: "cg", covergroup instance: "<UNNAMED1>", coverpoint: "label2".
+# ACDB: Error: ACDB_0012 testbench.sv (14): Illegal bin 'ill' was hit with value '30' at iterat
